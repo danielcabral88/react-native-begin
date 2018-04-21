@@ -1,0 +1,3 @@
+rootProject.name = 'InstaMobile'
+
+include ':app'
