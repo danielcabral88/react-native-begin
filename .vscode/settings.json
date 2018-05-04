@@ -1,0 +1,18 @@
+{
+    "sublimeTextKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.snippetSuggestions": "top",
+    "editor.formatOnPaste": true,
+    "mssql.connections": [
+        {
+            "server": "http://192.168.6.103:1433",
+            "database": "CADASTRO",
+            "authenticationType": "SqlLogin",
+            "user": "financeiroNovo",
+            "password": "#@1capadocia1@#",
+            "emptyPasswordInput": false,
+            "savePassword": true,
+            "profileName": "HOMOLOGACAO"
+        }
+    ]
+}

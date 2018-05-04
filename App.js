@@ -11,8 +11,10 @@ import {
   Text,
   View,
   Image,
-  Dimensions
+  Dimensions,
+  FlatList
 } from 'react-native';
+import Post from './src/components/Post'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -25,34 +27,35 @@ var width = Dimensions.get('screen').width;
 
 type Props = {};
 export default class App extends Component<Props> {
+  
+  constructor() {
+    super()
+    this.state = {
+      fotos: []
+    }
+  }  
+
+  componentDidMount() {
+    fetch('https://instalura-api.herokuapp.com/api/public/fotos/rafael')
+    .then(resposta => resposta.json())
+    .then(json => this.setState({fotos: json}))
+  }
+  
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Daniel
-        </Text>
-        <Image source={require('./resources/img/starry_night.jpg')}
-          style={{width: width, height: width}}></Image>
-      </View>
+      <FlatList style={styles.container}
+        data={this.state.fotos}
+        keyExtractor={(item, id) => id.toString()}
+        renderItem={ ({item}) =>
+          <Post foto={item}/>
+        }
+      />
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    marginTop: 20
+  }
+})
